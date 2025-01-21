@@ -1,0 +1,51 @@
+{
+  "name": "rxjs-leak-detector",
+  "version": "0.1.0",
+  "description": "Leak Detector for RxJS",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/demurgos/rxjs-leak-detector"
+  },
+  "scripts": {
+    "lint": "eslint \"./src/**/*.mts\"",
+    "format": "dprint fmt",
+    "format:check": "dprint check",
+    "dprint:update": "dprint config update",
+    "build": "tsc --build src/lib/tsconfig.json",
+    "prepack": "yarn run build",
+    "test:build": "tsc --build src/test/tsconfig.json",
+    "test": "yarn run test:build && node --test \"test/**/*.spec.mjs\""
+  },
+  "engines": {
+    "node": ">=14.13.1"
+  },
+  "keywords": [
+    "file",
+    "url"
+  ],
+  "author": "Charles Samborski <demurgos@demurgos.net> (https://demurgos.net/)",
+  "license": "MIT",
+  "dependencies": {
+    "rxjs": "^7.8.1",
+    "tslib": "^2.8.1"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.7",
+    "@typescript-eslint/eslint-plugin": "^8.20.0",
+    "@typescript-eslint/parser": "^8.20.0",
+    "dprint": "^0.48.0",
+    "eslint": "^8.57.1",
+    "typescript": "^5.7.3",
+    "zone.js": "^0.15.0"
+  },
+  "type": "module",
+  "exports": {
+    ".": "./lib/index.mjs",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "./lib/**/*.(mjs|map|mts)",
+    "./src/lib/"
+  ],
+  "packageManager": "yarn@4.6.0"
+}

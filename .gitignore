@@ -1,0 +1,21 @@
+###############################################################################
+# Build                                                                       #
+###############################################################################
+/coverage/
+/lib/
+/test/
+
+###############################################################################
+# Dependencies                                                                #
+###############################################################################
+# Node dependencies directory
+node_modules/
+# Yarn without Zero-Installs
+# https://yarnpkg.com/advanced/qa#which-files-should-be-gitignored
+.pnp.*
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions

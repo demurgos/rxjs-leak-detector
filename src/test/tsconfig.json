@@ -1,0 +1,18 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "noEmit": false,
+    "rootDir": ".",
+    "outDir": "../../test",
+    "target": "ES2016"
+  },
+  "include": [
+    "**/*.mts"
+  ],
+  "exclude": [],
+  "references": [
+    {
+      "path": "../lib"
+    }
+  ]
+}
