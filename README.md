@@ -12,8 +12,8 @@ to unsubscribe from.
 ## Quick usage
 
 ```typescript
-import {Observable, Subscriber, TeardownLogic} from "rxjs";
-import {LeakDetector} from "rxjs-leak-detector";
+import { Observable, Subscriber, TeardownLogic } from "rxjs";
+import { LeakDetector } from "rxjs-leak-detector";
 
 // example observable, returns a value but never completes
 export function hangingValue<T>(value: T): Observable<T> {
@@ -33,7 +33,11 @@ function checkLeaks() {
     using _spy = leakDetector.globalSpy();
 
     const observable$ = hangingValue("Hello, World!");
-    const sub = observable$.subscribe({next(v) { console.log(v) }});
+    const sub = observable$.subscribe({
+      next(v) {
+        console.log(v);
+      },
+    });
     // prints `Hello, World!`
 
     const snapshot = leakDetector.snapshot();
@@ -52,7 +56,6 @@ function checkLeaks() {
     snapshot2.assertEmptyOrPrintReportToConsole();
   }
 }
-
 ```
 
 For more advanced usage, see the test in the repo.
@@ -73,15 +76,15 @@ with `zone.js`. You must activate `zone.js` at the start of your program.
 ```typescript
 import "zone.js/node";
 
-import {Observable, Subscriber, TeardownLogic} from "rxjs";
-import {LeakDetector} from "rxjs-leak-detector";
+import { Observable, Subscriber, TeardownLogic } from "rxjs";
+import { LeakDetector } from "rxjs-leak-detector";
 
 // run three leaks concurrently
 await Promise.all([
   checkLeaks(),
   checkLeaks(),
   checkLeaks(),
-])
+]);
 
 async function checkLeaks() {
   const leakDetector = new LeakDetector(Observable);
@@ -95,11 +98,23 @@ async function checkLeaks() {
     await spy.run(async () => {
       const observable$ = hangingValue("Hello, World!");
       sleep(50);
-      const sub1 = observable$.subscribe({next(v) { console.log(v) }});
+      const sub1 = observable$.subscribe({
+        next(v) {
+          console.log(v);
+        },
+      });
       sleep(50);
-      const sub2 = observable$.subscribe({next(v) { console.log(v) }});
+      const sub2 = observable$.subscribe({
+        next(v) {
+          console.log(v);
+        },
+      });
       sleep(50);
-      const sub3 = observable$.subscribe({next(v) { console.log(v) }});
+      const sub3 = observable$.subscribe({
+        next(v) {
+          console.log(v);
+        },
+      });
     });
   }
   const snapshot = leakDetector.snapshot();
@@ -116,7 +131,7 @@ export function hangingValue<T>(value: T): Observable<T> {
 
 export function sleep(duration: number): Promise<void> {
   return new Promise((resolve) => {
-    setTimeout(resolve, duration)
+    setTimeout(resolve, duration);
   });
 }
 ```
